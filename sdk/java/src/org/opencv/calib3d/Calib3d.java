@@ -1157,12 +1157,12 @@ public class Calib3d {
  * @param flags Various operation flags that can be zero or a combination of the
  * following values:
  * <ul>
- *   <li> CV_CALIB_CB_ADAPTIVE_THRESH Use adaptive thresholding to convert the
+ *   <li> CALIB_CB_ADAPTIVE_THRESH Use adaptive thresholding to convert the
  * image to black and white, rather than a fixed threshold level (computed from
  * the average image brightness).
- *   <li> CV_CALIB_CB_NORMALIZE_IMAGE Normalize the image gamma with
- * "equalizeHist" before applying fixed or adaptive thresholding.
- *   <li> CV_CALIB_CB_FILTER_QUADS Use additional criteria (like contour area,
+ *   <li> CALIB_CB_NORMALIZE_IMAGE Normalize the image gamma with "equalizeHist"
+ * before applying fixed or adaptive thresholding.
+ *   <li> CALIB_CB_FILTER_QUADS Use additional criteria (like contour area,
  * perimeter, square-like shape) to filter out false quads extracted at the
  * contour retrieval stage.
  *   <li> CALIB_CB_FAST_CHECK Run a fast check on the image that looks for

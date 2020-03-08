@@ -20,11 +20,11 @@
 #      - OpenCV_INCLUDE_DIRS             : The OpenCV include directories.
 #      - OpenCV_COMPUTE_CAPABILITIES     : The version of compute capability.
 #      - OpenCV_ANDROID_NATIVE_API_LEVEL : Minimum required level of Android API.
-#      - OpenCV_VERSION                  : The version of this OpenCV build: "2.4.13.2"
+#      - OpenCV_VERSION                  : The version of this OpenCV build: "2.4.13.6"
 #      - OpenCV_VERSION_MAJOR            : Major version part of OpenCV_VERSION: "2"
 #      - OpenCV_VERSION_MINOR            : Minor version part of OpenCV_VERSION: "4"
 #      - OpenCV_VERSION_PATCH            : Patch version part of OpenCV_VERSION: "13"
-#      - OpenCV_VERSION_TWEAK            : Tweak version part of OpenCV_VERSION: "2"
+#      - OpenCV_VERSION_TWEAK            : Tweak version part of OpenCV_VERSION: "6"
 #
 #    Advanced variables:
 #      - OpenCV_SHARED                   : Use OpenCV as shared library
@@ -136,11 +136,11 @@ mark_as_advanced(FORCE OpenCV_LIB_DIR_OPT OpenCV_LIB_DIR_DBG OpenCV_3RDPARTY_LIB
 # ======================================================
 #  Version variables:
 # ======================================================
-SET(OpenCV_VERSION 2.4.13.2)
+SET(OpenCV_VERSION 2.4.13.6)
 SET(OpenCV_VERSION_MAJOR  2)
 SET(OpenCV_VERSION_MINOR  4)
 SET(OpenCV_VERSION_PATCH  13)
-SET(OpenCV_VERSION_TWEAK  2)
+SET(OpenCV_VERSION_TWEAK  6)
 
 # ====================================================================
 # Link libraries: e.g. opencv_core;opencv_imgproc; etc...
@@ -218,6 +218,14 @@ foreach(__cvcomponent ${OpenCV_FIND_COMPONENTS})
     #indicate that module is found
     string(TOUPPER "${__cvcomponent}" __cvcomponent)
     set(${__cvcomponent}_FOUND 1)
+  endif()
+  # OpenCV supports Debug and Release only.
+  # RelWithDebInfo and MinSizeRel are mapped to Release
+  if(TARGET ${__cvcomponent})
+    set_target_properties(${__cvcomponent} PROPERTIES
+        MAP_IMPORTED_CONFIG_MINSIZEREL "Release"
+        MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Release"
+    )
   endif()
 endforeach()
 set(OpenCV_FIND_COMPONENTS ${OpenCV_FIND_COMPONENTS_})

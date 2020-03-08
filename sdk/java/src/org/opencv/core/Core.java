@@ -12,12 +12,12 @@ import org.opencv.utils.Converters;
 public class Core {
 
     // these constants are wrapped inside functions to prevent inlining
-    private static String getVersion() { return "2.4.13.2"; }
+    private static String getVersion() { return "2.4.13.6"; }
     private static String getNativeLibraryName() { return "opencv_java2413"; }
     private static int getVersionEpoch() { return 2; }
     private static int getVersionMajor() { return 4; }
     private static int getVersionMinor() { return 13; }
-    private static int getVersionRevision() { return 2; }
+    private static int getVersionRevision() { return 6; }
 
     public static final String VERSION = getVersion();
     public static final String NATIVE_LIBRARY_NAME = getNativeLibraryName();
@@ -3974,8 +3974,8 @@ public class Core {
  * parallel region.
  * Always returns 0 if called outside of parallel region.</p>
  *
- * <p>The exact meaning of return value depends on the threading framework used by
- * OpenCV library:</p>
+ * <p>The exact meaning of the return value depends on the threading framework used
+ * by OpenCV library:</p>
  * <ul>
  *   <li> TBB – Unsupported with current 4.1 TBB release. May be will be
  * supported in future.
@@ -6894,19 +6894,19 @@ public class Core {
 /**
  * <p>OpenCV will try to set the number of threads for the next parallel region.
  * If <code>threads == 0</code>, OpenCV will disable threading optimizations and
- * run all it's functions sequentially. Passing <code>threads < 0</code> will
+ * run all its functions sequentially. Passing <code>threads < 0</code> will
  * reset threads number to system default.
  * This function must be called outside of parallel region.</p>
  *
- * <p>OpenCV will try to run it's functions with specified threads number, but some
+ * <p>OpenCV will try to run its functions with specified threads number, but some
  * behaviour differs from framework:</p>
  * <ul>
  *   <li> TBB – User-defined parallel constructions will run with the same
- * threads number, if another does not specified. If late on user creates own
+ * threads number, if another is not specified. If late on user creates his own
  * scheduler, OpenCV will be use it.
  *   <li> OpenMP – No special defined behaviour.
  *   <li> Concurrency – If <code>threads == 1</code>, OpenCV will disable
- * threading optimizations and run it's functions sequentially.
+ * threading optimizations and run its functions sequentially.
  *   <li> GCD – Supports only values <= 0.
  *   <li> C= – No special defined behaviour.
  * </ul>
