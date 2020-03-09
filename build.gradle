@@ -119,7 +119,6 @@ android {
             jniLibs.srcDirs = ['src/sdk/native/libs']
             java.srcDirs = ['src/main/java']
             aidl.srcDirs = ['src/main/java']
-            res.srcDirs = ['src/main/java']
         }
     }
 }
