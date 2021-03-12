@@ -88,41 +88,33 @@
 //   }
 //
 
-apply plugin: 'com.android.library'
-
-println "OpenCV: " + project.buildscript.sourceFile
-
+plugins {
+    id("com.android.library")
+}
+println("OpenCV: " + project.buildscript.sourceFile)
 android {
-    compileSdkVersion 30
-
+    compileSdkVersion(30)
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode=3490
-        versionName="3.4.9"
+        minSdkVersion(16)
+        targetSdkVersion(30)
+        versionCode = 3490
+        versionName = "3.4.9"
     }
-
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.txt")
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['native/libs']
-            java.srcDirs = ['java/src']
-            aidl.srcDirs = ['java/src']
-            res.srcDirs = ['java/res']
-            manifest.srcFile 'java/AndroidManifest.xml'
-        }
-    }
+    sourceSets["main"].jniLibs.srcDirs("native/libs")
+    sourceSets["main"].java.srcDirs("java/src")
+    sourceSets["main"].aidl.srcDirs("java/src")
+    sourceSets["main"].res.srcDirs("java/res")
+    sourceSets["main"].manifest.srcFile("java/AndroidManifest.xml")
 }
-
 dependencies {
 }
